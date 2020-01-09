@@ -10,9 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.commands.Drive;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -25,8 +26,9 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-
-
+  private XboxController joy;
+  private DriveTrain m_driveTrain;
+  private Drive m_driveCmd;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -42,8 +44,19 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    m_driveTrain = createDriveTrain();
+    joy = new XboxController(0);
+    m_driveCmd = new Drive(m_driveTrain, joy);
+    m_driveTrain.setDefaultCommand(m_driveCmd);
+    
+  }
+  
+
+  private DriveTrain createDriveTrain() {
+    return new DriveTrain();
   }
 
+  
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
