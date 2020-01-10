@@ -12,6 +12,7 @@ public class Drive extends CommandBase {
         driveTrain = dt;
         jstick = joy;
         this.setSubsystem("DriveTrain");
+        this.addRequirements(dt);
     }
     public void execute() {
         driveTrain.arcadeDrive(jstick);
