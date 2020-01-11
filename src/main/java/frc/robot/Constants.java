@@ -28,4 +28,10 @@ public final class Constants {
 
     public static int DT_RIGHT3 = 6;
 
+    public static int SH_RIGHT = 7;
+
+    public static int SH_LEFT = 8;
+
+    public static int DS_PORT = 0;
+
 }

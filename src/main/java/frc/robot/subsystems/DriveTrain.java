@@ -29,5 +29,7 @@ public class DriveTrain extends SubsystemBase {
     public void arcadeDrive(GenericHID joy) {
         drivetrain.arcadeDrive(-joy.getX(), joy.getY());
     }
-
+    public void stop() {
+        drivetrain.stopMotor();
+    }
 }

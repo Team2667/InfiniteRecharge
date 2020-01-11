@@ -17,4 +17,7 @@ public class Drive extends CommandBase {
     public void execute() {
         driveTrain.arcadeDrive(jstick);
     }
+    public void end(boolean interupted) {
+        driveTrain.stop();
+    }
 }
