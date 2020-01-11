@@ -58,7 +58,7 @@ public class RobotContainer {
     m_shooter = new Shooter();
     m_shootCmd = new Shoot(m_shooter);
 
-    JoystickButton b = new JoystickButton(joy, XboxController.Button.kBumperLeft.value)
+    JoystickButton b = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
 
     b.whileHeld(m_shootCmd);
   }
