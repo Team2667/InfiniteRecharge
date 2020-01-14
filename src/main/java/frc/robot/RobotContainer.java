@@ -50,25 +50,29 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_driveTrain = createDriveTrain();
+
     joy = new XboxController(0);
+
+    setupDriveTrain();
+    setupShooter();
+    setupButtons();
+  }
+
+  private void setupDriveTrain() {
+    m_driveTrain = new DriveTrain();
     m_driveCmd = new Drive(m_driveTrain, joy);
     m_driveTrain.setDefaultCommand(m_driveCmd);
-
+  }
+  
+  private void setupShooter() {
     m_shooter = new Shooter();
     m_shootCmd = new Shoot(m_shooter);
+  }
 
+  private void setupButtons() {
     JoystickButton b = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
-
     b.whileHeld(m_shootCmd);
   }
-  
-
-  private DriveTrain createDriveTrain() {
-    return new DriveTrain();
-  }
-
-  
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
