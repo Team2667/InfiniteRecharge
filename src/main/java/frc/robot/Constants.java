@@ -26,9 +26,9 @@ public final class Constants {
 
     public static int DT_RIGHT2 = 5;
 
-    public static int DT_RIGHT3 = 6;
+    public static int DT_RIGHT3 = 7;
 
-    public static int SH_RIGHT = 7;
+    public static int SH_RIGHT = 6;
 
     public static int SH_LEFT = 8;
 
