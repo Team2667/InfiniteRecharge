@@ -34,4 +34,6 @@ public final class Constants {
 
     public static int DS_PORT = 0;
 
+    public static int CW_MOTOR = 9;
+
 }
