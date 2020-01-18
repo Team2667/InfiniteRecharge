@@ -10,10 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeRotary;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -39,6 +41,8 @@ public class RobotContainer {
   private Shoot m_shootCmd;
   private Drive m_driveCmd;
   private ColorComm m_colorCommand;
+  private IntakeRotary m_rotary;
+  private Intake m_rotaryCommand;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -60,6 +64,7 @@ public class RobotContainer {
     setupDriveTrain();
     setupShooter();
     setupColorWheel();
+    setupIntakeRotary();
   }
 
   private void setupDriveTrain() {
@@ -80,6 +85,13 @@ public class RobotContainer {
     m_colorCommand = new ColorComm(m_cWheel);
     JoystickButton a = new JoystickButton(joy, XboxController.Button.kA.value);
     a.whileHeld(m_colorCommand);
+  }
+
+  private void setupIntakeRotary() {
+    m_rotary = new IntakeRotary();
+    m_rotaryCommand = new Intake(m_rotary);
+    JoystickButton x = new JoystickButton(joy, XboxController.Button.kX.value);
+    x.whileHeld(m_rotaryCommand);
   }
 
   /**
