@@ -56,11 +56,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     joy = new XboxController(0);
-    /*
+  
     setupDriveTrain();
     setupShooter();
-    setupButtons();
-    */
     setupColorWheel();
   }
 
