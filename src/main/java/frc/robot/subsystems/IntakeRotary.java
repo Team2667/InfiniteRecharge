@@ -12,8 +12,17 @@ public class IntakeRotary extends ExampleSubsystem {
     public void rotaryStart (double speed) {
         rotarySpinner.set(ControlMode.PercentOutput, speed);
     }
-    public void rotaryStop () {
+    public void rotaryStop() {
         rotarySpinner.set(ControlMode.PercentOutput, 0);
-   }
+    }
+    public void rotaryToggle(double speed) {
+        if (rotarySpinner.getMotorOutputPercent() == 0) {
+            rotarySpinner.set(ControlMode.PercentOutput, speed);
+        }
+        else {
+            rotarySpinner.set(ControlMode.PercentOutput, 0);
+        }
+    }
+
    
 }

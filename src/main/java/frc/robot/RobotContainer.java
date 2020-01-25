@@ -11,13 +11,18 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Intake;
+import frc.robot.commands.IntakeReverse;
+import frc.robot.commands.IntakeRotaryToggle;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeExtender;
+import frc.robot.commands.IntakeExtenderToggle;
 import frc.robot.subsystems.IntakeRotary;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ColorComm;
@@ -43,6 +48,11 @@ public class RobotContainer {
   private ColorComm m_colorCommand;
   private IntakeRotary m_rotary;
   private Intake m_rotaryCommand;
+  private IntakeReverse m_rotaryReverseCommand;
+  private IntakeExtender m_intakeExtender;
+  private IntakeExtenderToggle m_IntakeExtenderCommand; 
+  private IntakeRotary m_IntakeRotary;
+  private IntakeRotaryToggle m_IntakeRotaryToggle;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -61,10 +71,11 @@ public class RobotContainer {
 
     joy = new XboxController(0);
   
-    setupDriveTrain();
-    setupShooter();
-    setupColorWheel();
-    setupIntakeRotary();
+    // setupDriveTrain();
+    // setupShooter();
+   // setupColorWheel();
+   setupIntakeExtender();
+
   }
 
   private void setupDriveTrain() {
@@ -87,11 +98,15 @@ public class RobotContainer {
     a.whileHeld(m_colorCommand);
   }
 
-  private void setupIntakeRotary() {
-    m_rotary = new IntakeRotary();
-    m_rotaryCommand = new Intake(m_rotary);
-    JoystickButton x = new JoystickButton(joy, XboxController.Button.kX.value);
-    x.whileHeld(m_rotaryCommand);
+
+  private void setupIntakeExtender() {
+    m_intakeExtender = new IntakeExtender();
+    m_IntakeExtenderCommand = new IntakeExtenderToggle(m_intakeExtender);
+    m_IntakeRotary = new IntakeRotary();
+    m_IntakeRotaryToggle = new IntakeRotaryToggle(m_IntakeRotary);
+    var commandGrp = new ParallelCommandGroup(m_IntakeRotaryToggle,m_IntakeExtenderCommand);
+    JoystickButton y = new JoystickButton(joy, XboxController.Button.kY.value);
+    y.whenPressed(commandGrp);
   }
 
   /**

@@ -18,6 +18,14 @@ package frc.robot;
 public final class Constants {
     public static int DS_PORT = 0;
 
+    public static int INTK_CHNL_R = 0;
+
+    public static int INTK_REVERSE_CHNL_R = 1;
+
+    public static int INTK_CHNL_L = 2;
+
+    public static int INTK_REVERSE_CHNL_L = 3;
+
     public static int DT_LEFT1 = 1;
 
     public static int DT_LEFT2 = 2 ;
@@ -37,5 +45,7 @@ public final class Constants {
     public static int CW_MOTOR = 9;
 
     public static int IR_MOTOR = 10;
+
+    public static int IE_CAN = 11;
 
 }
