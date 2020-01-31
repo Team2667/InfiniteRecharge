@@ -96,7 +96,7 @@ public class RobotContainer {
     m_cWheel = new  ColorWheel();
     m_colorCommand = new CallibrateColorWheel(m_cWheel);
     JoystickButton a = new JoystickButton(joy, XboxController.Button.kA.value);
-    a.whileHeld(m_colorCommand);
+    a.whenPressed(m_colorCommand);
   }
 
 
