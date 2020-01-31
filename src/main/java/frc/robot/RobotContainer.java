@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.CallibrateColorWheel;
 import frc.robot.commands.ColorComm;
 import frc.robot.commands.Drive;
 /**
@@ -45,7 +46,7 @@ public class RobotContainer {
   private ColorWheel m_cWheel;
   private Shoot m_shootCmd;
   private Drive m_driveCmd;
-  private ColorComm m_colorCommand;
+  private CallibrateColorWheel m_colorCommand;
   private IntakeRotary m_rotary;
   private Intake m_rotaryCommand;
   private IntakeReverse m_rotaryReverseCommand;
@@ -73,7 +74,7 @@ public class RobotContainer {
   
     // setupDriveTrain();
     // setupShooter();
-   // setupColorWheel();
+   setupColorWheel();
    setupIntakeExtender();
 
   }
@@ -93,7 +94,7 @@ public class RobotContainer {
 
   private void setupColorWheel() {
     m_cWheel = new  ColorWheel();
-    m_colorCommand = new ColorComm(m_cWheel);
+    m_colorCommand = new CallibrateColorWheel(m_cWheel);
     JoystickButton a = new JoystickButton(joy, XboxController.Button.kA.value);
     a.whileHeld(m_colorCommand);
   }
