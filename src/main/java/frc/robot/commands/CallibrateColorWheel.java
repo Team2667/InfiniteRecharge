@@ -13,6 +13,7 @@ public class CallibrateColorWheel extends CommandBase {
         addRequirements(colorWheel);
     }
     public void initialize() {
+    
         
     }
     @Override
@@ -29,6 +30,6 @@ public class CallibrateColorWheel extends CommandBase {
         this.colorWheel.wheelStop();
     }
     public void execute() {
-        this.colorWheel.wheelStart(.5);
+        this.colorWheel.wheelStart(1);
     }
 }

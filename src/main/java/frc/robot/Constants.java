@@ -48,4 +48,6 @@ public final class Constants {
 
     public static int IE_CAN = 11;
 
+    public static int F_CAN = 12;
+
 }
