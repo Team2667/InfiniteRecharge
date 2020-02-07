@@ -1,22 +1,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeRotary;
+import frc.robot.subsystems.Feeder;
 
 public class FeedCommand extends CommandBase {
-    public IntakeRotary feedMotor;
-    public FeedCommand(IntakeRotary feedMotor) {
+    public Feeder feedMotor;
+    public FeedCommand(Feeder feedMotor) {
         this.feedMotor = feedMotor;
         this.addRequirements(feedMotor);
     }
 
     @Override
     public void execute() {
-        feedMotor.rotaryStart(.5);
+        feedMotor.feederStart(.5);
     }
 
     @Override
     public void end(boolean interupted) {
-        feedMotor.rotaryStop();
+        feedMotor.feederStop();
     }
 }

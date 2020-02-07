@@ -18,6 +18,8 @@ import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeExtender;
+import frc.robot.subsystems.Feeder;
+import frc.robot.commands.FeedCommand;
 import frc.robot.commands.IntakeExtenderToggle;
 import frc.robot.subsystems.IntakeRotary;
 import frc.robot.subsystems.Shooter;
@@ -57,6 +59,8 @@ public class RobotContainer {
   private IntakeExtenderToggle m_IntakeExtenderCommand; 
   private IntakeRotary m_IntakeRotary;
   private IntakeRotaryToggle m_IntakeRotaryToggle;
+  private Feeder m_Feeder;
+  private FeedCommand m_FeedCommand;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -79,6 +83,7 @@ public class RobotContainer {
     // setupShooter();
    setupColorWheel();
    setupIntakeExtender();
+   setupFeederCommand();
 
   }
 
@@ -111,6 +116,13 @@ public class RobotContainer {
     var commandGrp = new ParallelCommandGroup(m_IntakeRotaryToggle,m_IntakeExtenderCommand);
     JoystickButton y = new JoystickButton(joy, XboxController.Button.kY.value);
     y.whenPressed(commandGrp);
+  }
+
+  private void setupFeederCommand() {
+    m_Feeder = new Feeder();
+    m_FeedCommand = new FeedCommand(m_Feeder);
+    JoystickButton x = new JoystickButton(joy, XboxController.Button.kA.value);
+    x.whenPressed(m_FeedCommand);
   }
 
   /**
