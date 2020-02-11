@@ -22,23 +22,23 @@ public final class Constants {
 
     public static int INTK_REVERSE_CHNL_R = 1;
 
-    public static int INTK_CHNL_L = 2;
-
-    public static int INTK_REVERSE_CHNL_L = 3;
-
     public static int DT_LEFT1 = 1;
 
     public static int DT_LEFT2 = 2 ;
 
+    public static int INTK_CHNL_L = 2;
+
     public static int DT_LEFT3 = 3;
+
+    public static int INTK_REVERSE_CHNL_L = 3;
 
     public static int DT_RIGHT1 = 4;
 
     public static int DT_RIGHT2 = 5;
 
-    public static int DT_RIGHT3 = 7;
+    public static int DT_RIGHT3 = 6;
 
-    public static int SH_RIGHT = 6;
+    public static int SH_RIGHT = 7;
 
     public static int SH_LEFT = 8;
 

@@ -77,11 +77,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    joy = new XboxController(0);
+   joy = new XboxController(0);
   
-    // setupDriveTrain();
-    // setupShooter();
-   setupColorWheel();
+   setupDriveTrain();
+   setupShooter();
+   // setupColorWheel();
    setupIntakeExtender();
    setupFeederCommand();
 
@@ -96,8 +96,8 @@ public class RobotContainer {
   private void setupShooter() {
     m_shooter = new Shooter();
     m_shootCmd = new Shoot(m_shooter);
-    JoystickButton b = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
-    b.whileHeld(m_shootCmd);
+    JoystickButton bL = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
+    bL.whileHeld(m_shootCmd);
   }
 
   private void setupColorWheel() {
