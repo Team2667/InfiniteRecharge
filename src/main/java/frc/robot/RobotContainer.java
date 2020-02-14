@@ -14,6 +14,7 @@ import frc.robot.commands.FeedCommand;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeRotaryToggle;
 import frc.robot.commands.Shoot;
+import frc.robot.subsystems.BallFeed;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -28,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.BallCommand;
 import frc.robot.commands.CallibrateColorWheel;
 import frc.robot.commands.ColorComm;
 import frc.robot.commands.CountRevolutions;
@@ -61,6 +63,8 @@ public class RobotContainer {
   private IntakeRotaryToggle m_IntakeRotaryToggle;
   private Feeder m_Feeder;
   private FeedCommand m_FeedCommand;
+  private BallFeed m_BallFeed;
+  private BallCommand m_BallCommand;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -96,8 +100,10 @@ public class RobotContainer {
   private void setupShooter() {
     m_shooter = new Shooter();
     m_shootCmd = new Shoot(m_shooter);
+    m_Feeder = new Feeder();
+    m_FeedCommand = new FeedCommand(m_Feeder);
     JoystickButton bL = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
-    bL.whileHeld(m_shootCmd);
+    bL.whileHeld(new ParallelCommandGroup(m_shootCmd,m_FeedCommand));
   }
 
   private void setupColorWheel() {
@@ -121,8 +127,15 @@ public class RobotContainer {
   private void setupFeederCommand() {
     m_Feeder = new Feeder();
     m_FeedCommand = new FeedCommand(m_Feeder);
-    JoystickButton x = new JoystickButton(joy, XboxController.Button.kA.value);
+    JoystickButton x = new JoystickButton(joy, XboxController.Button.kX.value);
     x.whenPressed(m_FeedCommand);
+  }
+
+  private void setupBallCommand() {
+    m_BallFeed = new BallFeed();
+    m_BallCommand = new BallCommand(m_BallFeed);
+    JoystickButton bR = new JoystickButton(joy, XboxController.Button.kBumperRight.value);
+    bR.whenPressed(m_FeedCommand);
   }
 
   /**

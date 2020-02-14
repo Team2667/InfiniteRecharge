@@ -50,4 +50,6 @@ public final class Constants {
 
     public static int F_CAN = 12;
 
+    public static int BF_CAN = 13;
+
 }

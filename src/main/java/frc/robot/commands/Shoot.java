@@ -13,7 +13,7 @@ public class Shoot extends CommandBase {
     }
 
     public void execute() {
-        shooter.start(0.75);
+        shooter.start(-0.75);
     }
 
     public void end(boolean isInterupted) {

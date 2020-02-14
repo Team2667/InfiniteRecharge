@@ -12,7 +12,7 @@ public class Intake extends CommandBase {
 
     @Override
     public void execute() {
-        intakeMotor.rotaryStart(.5);
+        intakeMotor.rotaryStart(0.5);
     }
 
     @Override
