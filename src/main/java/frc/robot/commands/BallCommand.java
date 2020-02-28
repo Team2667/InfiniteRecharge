@@ -12,7 +12,7 @@ public class BallCommand extends CommandBase {
 
     @Override
     public void execute() {
-        ballMotor.ballStart(.5);
+        ballMotor.ballStart(-1);
     }
 
     @Override

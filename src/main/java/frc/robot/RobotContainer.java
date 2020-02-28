@@ -54,9 +54,6 @@ public class RobotContainer {
   private Shoot m_shootCmd;
   private Drive m_driveCmd;
   private Command m_colorCommand;
-  private IntakeRotary m_rotary;
-  private FeedCommand m_rotaryCommand;
-  private IntakeReverse m_rotaryReverseCommand;
   private IntakeExtender m_intakeExtender;
   private IntakeExtenderToggle m_IntakeExtenderCommand; 
   private IntakeRotary m_IntakeRotary;
@@ -87,8 +84,47 @@ public class RobotContainer {
    setupShooter();
    // setupColorWheel();
    setupIntakeExtender();
+   setupIntakeRotary();
+   setupBallCommand();
    setupFeederCommand();
+   mapButtons();
 
+  }
+
+  private void mapButtons() {
+    mapFeedeerButton();
+    mapShooterButton();
+    mapIntakeButton();
+  }
+
+  private void mapFeedeerButton() {
+    if(m_FeedCommand != null && m_BallCommand != null) {
+      JoystickButton bR = new JoystickButton(joy, XboxController.Button.kBumperRight.value);
+      bR.whileHeld(new ParallelCommandGroup(m_FeedCommand, m_BallCommand));
+    }
+  }
+
+/*
+  private void mapTemplate() {
+    if(m_command != null) {
+      JoystickButton (Button Name) = new JoystickButton(joy, XboxController.Button.(Button Name).value);
+      (Button Name).whenPressed(m_command);
+    }
+  }
+*/
+
+private void mapIntakeButton() {
+  if(m_IntakeExtenderCommand != null && m_IntakeRotaryToggle != null) {
+    JoystickButton x = new JoystickButton(joy, XboxController.Button.kX.value);
+    x.whenPressed(new ParallelCommandGroup(m_IntakeExtenderCommand, m_IntakeRotaryToggle));
+  }
+}
+
+  private void mapShooterButton() {
+    if(m_shootCmd != null) {
+      JoystickButton bL = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
+      bL.whileHeld(m_shootCmd);
+    }
   }
 
   private void setupDriveTrain() {
@@ -100,10 +136,6 @@ public class RobotContainer {
   private void setupShooter() {
     m_shooter = new Shooter();
     m_shootCmd = new Shoot(m_shooter);
-    m_Feeder = new Feeder();
-    m_FeedCommand = new FeedCommand(m_Feeder);
-    JoystickButton bL = new JoystickButton(joy, XboxController.Button.kBumperLeft.value);
-    bL.whileHeld(new ParallelCommandGroup(m_shootCmd,m_FeedCommand));
   }
 
   private void setupColorWheel() {
@@ -113,29 +145,24 @@ public class RobotContainer {
     a.whenPressed(m_colorCommand);
   }
 
-
   private void setupIntakeExtender() {
     m_intakeExtender = new IntakeExtender();
     m_IntakeExtenderCommand = new IntakeExtenderToggle(m_intakeExtender);
+  }
+
+  private void setupIntakeRotary() {
     m_IntakeRotary = new IntakeRotary();
     m_IntakeRotaryToggle = new IntakeRotaryToggle(m_IntakeRotary);
-    var commandGrp = new ParallelCommandGroup(m_IntakeRotaryToggle,m_IntakeExtenderCommand);
-    JoystickButton y = new JoystickButton(joy, XboxController.Button.kY.value);
-    y.whenPressed(commandGrp);
   }
 
   private void setupFeederCommand() {
     m_Feeder = new Feeder();
     m_FeedCommand = new FeedCommand(m_Feeder);
-    JoystickButton x = new JoystickButton(joy, XboxController.Button.kX.value);
-    x.whenPressed(m_FeedCommand);
   }
 
   private void setupBallCommand() {
     m_BallFeed = new BallFeed();
     m_BallCommand = new BallCommand(m_BallFeed);
-    JoystickButton bR = new JoystickButton(joy, XboxController.Button.kBumperRight.value);
-    bR.whenPressed(m_FeedCommand);
   }
 
   /**

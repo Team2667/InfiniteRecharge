@@ -12,7 +12,7 @@ public class IntakeRotaryToggle extends CommandBase {
 
     @Override
     public void initialize() {
-        intakeRotary.rotaryToggle(.5);
+        intakeRotary.rotaryToggle(.75);
     }
 
     @Override

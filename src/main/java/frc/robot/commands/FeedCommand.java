@@ -12,7 +12,7 @@ public class FeedCommand extends CommandBase {
 
     @Override
     public void execute() {
-        feedMotor.feederStart(.5);
+        feedMotor.feederStart(1);
     }
 
     @Override
