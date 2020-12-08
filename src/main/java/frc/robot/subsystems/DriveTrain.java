@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
@@ -7,10 +8,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain extends SubsystemBase {
-    private DifferentialDrive drivetrain;
+    private final DifferentialDrive drivetrain;
+    private CANSparkMax left1, left2, left3, right1, right2, right3;
     public DriveTrain() {
-        CANSparkMax left1, left2, left3, right1, right2, right3;
-
         right1 = new CANSparkMax(Constants.DT_LEFT1, MotorType.kBrushless);
         right2 = new CANSparkMax(Constants.DT_LEFT2, MotorType.kBrushless);
         right3 = new CANSparkMax(Constants.DT_LEFT3, MotorType.kBrushless);
@@ -26,10 +26,15 @@ public class DriveTrain extends SubsystemBase {
         drivetrain = new DifferentialDrive(left1, right1);
     }
 
-    public void arcadeDrive(GenericHID joy) {
+    public void arcadeDrive(final GenericHID joy) {
         drivetrain.arcadeDrive(-joy.getX(), joy.getY());
     }
     public void stop() {
         drivetrain.stopMotor();
+    }
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Left RPM", left1.getEncoder().getVelocity());
+        SmartDashboard.putNumber("Right RPM", right1.getEncoder().getVelocity());
     }
 }

@@ -10,7 +10,7 @@ public class Feeder extends ExampleSubsystem {
         feederMotor = new TalonSRX(Constants.F_CAN);
     }
     public void feederStart (double speed) {
-        feederMotor.set(ControlMode.PercentOutput, -speed);
+        feederMotor.set(ControlMode.PercentOutput, speed);
     }
     public void feederStop() {
         feederMotor.set(ControlMode.PercentOutput, 0);
