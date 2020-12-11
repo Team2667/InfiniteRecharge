@@ -4,10 +4,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain extends SubsystemBase {
+    double maxSpeed = 4;
+    double adjustedSpeed;
     private final DifferentialDrive drivetrain;
     private CANSparkMax left1, left2, left3, right1, right2, right3;
     public DriveTrain() {
@@ -25,7 +28,6 @@ public class DriveTrain extends SubsystemBase {
         right1.setInverted(false);
         drivetrain = new DifferentialDrive(left1, right1);
     }
-
     public void arcadeDrive(final GenericHID joy) {
         drivetrain.arcadeDrive(-joy.getX(), joy.getY());
     }
@@ -37,4 +39,11 @@ public class DriveTrain extends SubsystemBase {
         SmartDashboard.putNumber("Left RPM", left1.getEncoder().getVelocity());
         SmartDashboard.putNumber("Right RPM", right1.getEncoder().getVelocity());
     }
+    public void DriveAtPercentageVelocity(double percentSpeed) {
+        adjustedSpeed = maxSpeed * (percentSpeed / 100);
+        right1.getPIDController().setReference(maxSpeed, ControlType.kVelocity);
+        left1.getPIDController().setReference(maxSpeed, ControlType.kVelocity);
+        
+    }
+
 }
