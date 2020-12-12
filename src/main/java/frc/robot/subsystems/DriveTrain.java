@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain extends SubsystemBase {
     double maxSpeed = 5000;
-    double adjustedSpeed;
     private final DifferentialDrive drivetrain;
     private CANSparkMax left1, left2, left3, right1, right2, right3;
     public DriveTrain() {
@@ -40,10 +39,12 @@ public class DriveTrain extends SubsystemBase {
         SmartDashboard.putNumber("Right RPM", right1.getEncoder().getVelocity());
     }
     public void DriveAtPercentageVelocity(double percentSpeed) {
-        //adjustedSpeed = maxSpeed * (percentSpeed / 100);
-        right1.getPIDController().setReference(maxSpeed, ControlType.kVelocity);
-        left1.getPIDController().setReference(maxSpeed, ControlType.kVelocity);
-        
+        double adjustedSpeed = maxSpeed * (percentSpeed / 100);
+        right1.getPIDController().setP(0.1);
+        right1.getPIDController().setI(0);
+        right1.getPIDController().setD(0);
+        right1.getPIDController().setReference(adjustedSpeed, ControlType.kVelocity);
+        // left1.getPIDController().setReference(adjustedSpeed, ControlType.kVelocity);
     }
 
 }
