@@ -17,11 +17,11 @@ public class Drive extends CommandBase {
         this.addRequirements(dt);
     }
     public void execute() {
-        if (jstick.getTriggerAxis(Hand.kLeft) == 0 ) {
+        if (jstick.getTriggerAxis(Hand.kLeft) == 0 && jstick.getTriggerAxis(Hand.kRight) == 0)  {
         driveTrain.arcadeDrive(jstick);
         }
         else {
-            driveTrain.DriveAtPercentageVelocity(jstick.getTriggerAxis(Hand.kLeft));
+            driveTrain.DriveAtPercentageVelocity(jstick.getTriggerAxis(Hand.kRight), jstick.getTriggerAxis(Hand.kLeft));
         }
     }
     public void end(boolean interupted) {
