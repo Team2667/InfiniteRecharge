@@ -18,10 +18,10 @@ public class Drive extends CommandBase {
     }
     public void execute() {
         if (jstick.getTriggerAxis(Hand.kLeft) == 0 && jstick.getTriggerAxis(Hand.kRight) == 0)  {
-          driveTrain.DriveAtPercentageVelocity(jstick.getY(Hand.kRight), jstick.getY(Hand.kLeft));
+          driveTrain.DriveAtPercentageVelocity(-jstick.getY(Hand.kRight), -jstick.getY(Hand.kLeft));
         }
         else {
-            driveTrain.DriveAtPercentageVelocity(-jstick.getTriggerAxis(Hand.kRight), -jstick.getTriggerAxis(Hand.kLeft));
+            driveTrain.DriveAtPercentageVelocity(jstick.getTriggerAxis(Hand.kRight), jstick.getTriggerAxis(Hand.kLeft));
         }
     }
     public void end(boolean interupted) {
