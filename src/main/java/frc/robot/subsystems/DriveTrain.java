@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain extends SubsystemBase {
-    double maxSpeedLeft = 6000;
+    double maxSpeedLeft = 6500;
     double maxSpeedRight = maxSpeedLeft;
     private final DifferentialDrive drivetrain;
     private CANSparkMax left1, left2, left3, right1, right2, right3;
