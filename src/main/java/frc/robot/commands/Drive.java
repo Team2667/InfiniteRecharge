@@ -21,7 +21,7 @@ public class Drive extends CommandBase {
           driveTrain.DriveAtPercentageVelocity(jstick.getY(Hand.kRight), jstick.getY(Hand.kLeft));
         }
         else {
-            driveTrain.DriveAtPercentageVelocity(jstick.getTriggerAxis(Hand.kRight), jstick.getTriggerAxis(Hand.kLeft));
+            driveTrain.DriveAtPercentageVelocity(-jstick.getTriggerAxis(Hand.kRight), -jstick.getTriggerAxis(Hand.kLeft));
         }
     }
     public void end(boolean interupted) {
