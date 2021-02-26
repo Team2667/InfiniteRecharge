@@ -36,8 +36,8 @@ public class DriveTrain extends SubsystemBase {
     }
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Left RPM", left1.getEncoder().getVelocity());
-        SmartDashboard.putNumber("Right RPM", right1.getEncoder().getVelocity());
+        SmartDashboard.putNumber("Left Drive RPM", left1.getEncoder().getVelocity());
+        SmartDashboard.putNumber("Right Drive RPM", right1.getEncoder().getVelocity());
     }
     public void DriveAtPercentageVelocity(double percentSpeedLeft, double percentSpeedRight) {
         double adjustedSpeedLeft = maxSpeedLeft * (percentSpeedLeft);
